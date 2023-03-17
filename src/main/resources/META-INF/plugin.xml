@@ -1,0 +1,49 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <id>com.flutter.ui.utils.FlutterUiUtils</id>
+
+    <name>FlutterUiUtils</name>
+
+    <vendor email="support@testcompany.com" url="https://www.testcompany.com">TestCompany</vendor>
+
+    <description><![CDATA[
+    Test
+    Test
+    Test
+    Test
+    Test
+    Test
+    Test
+    Test
+    Test
+    Test
+    Test
+    Test
+    Test
+    Test
+    Test
+    Test
+    Test
+    Test
+    Test
+    Test
+  ]]></description>
+
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.platform</depends>
+    <depends>Dart</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationService serviceImplementation="com.flutter.ui.utils.flutteruiutils.MyApplicationService"/>
+        <projectService serviceImplementation="com.flutter.ui.utils.flutteruiutils.MyProjectService"/>
+        <internalFileTemplate name="Dart Test File"/>
+    </extensions>
+
+
+    <actions>
+        <action id="com.flutter.ui.utils.flutteruiutils.UiUtils" class="com.flutter.ui.utils.flutteruiutils.UiUtils"
+                text="Create Dart File`" description="Descr">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="after" relative-to-action="WeighingNewGroup"/>
+        </action>
+    </actions>
+</idea-plugin>
