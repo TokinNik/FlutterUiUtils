@@ -52,14 +52,14 @@ class UiUtils : CreateFileFromTemplateAction(
 
         val relativePath = VfsUtilCore.getRelativePath(dir.virtualFile, projectPath)
                 .orEmpty()
-                .replace("lib/", "")
+//                .replace("lib/", "")
 
         val newPath =  "${projectPath.toNioPath()}/$relativePath"
 
         val newDir = VfsUtil.createDirectories(newPath)
         val newDirForReals = PsiDirectoryFactory.getInstance(project).createDirectory(newDir)
 
-        return super.createFileFromTemplate("${className}_test.dart", template, newDirForReals)
+        return super.createFileFromTemplate("${className}.dart", template, newDirForReals)
     }
 
     private fun isAlreadyInTestDirectory(relativeFilePath: String): Boolean {
