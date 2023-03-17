@@ -41,8 +41,9 @@
 
 
     <actions>
-        <action id="com.flutter.ui.utils.flutteruiutils.UiUtils" class="com.flutter.ui.utils.flutteruiutils.UiUtils"
-                text="Create Dart File`" description="Descr">
+        <action id="com.flutter.ui.utils.flutteruiutils.CreateScreenTemplate"
+                class="com.flutter.ui.utils.flutteruiutils.CreateScreenTemplate" text="Create Flutter Screen"
+                description="Create Flutter Screen">
             <add-to-group group-id="ProjectViewPopupMenu" anchor="after" relative-to-action="WeighingNewGroup"/>
         </action>
     </actions>
