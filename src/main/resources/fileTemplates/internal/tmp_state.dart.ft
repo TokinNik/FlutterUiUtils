@@ -1,0 +1,27 @@
+part of '${BLOC_FILE_NAME}.dart';
+
+class ${BLOC_NAME}State extends BlocState {
+
+  ${BLOC_NAME}State({
+    super.isLoading,
+    super.errorString,
+  });
+
+  ${BLOC_NAME}State copyWith({
+    bool? isLoading,
+    String? errorString,
+  }) {
+    return ${BLOC_NAME}State(
+      isLoading: isLoading ?? this.isLoading,
+      errorString: errorString ?? this.errorString,
+    );
+  }
+
+  @override
+  List<Object> get props =>
+      [
+        isLoading,
+        errorString,
+      ];
+
+}

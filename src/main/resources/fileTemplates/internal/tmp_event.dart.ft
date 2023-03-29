@@ -1,0 +1,11 @@
+part of '${BLOC_FILE_NAME}.dart';
+
+class ${BLOC_NAME}Event extends BlocEvent {
+  ${BLOC_NAME}Event._();
+
+  factory ${BLOC_NAME}Event.init() => ${BLOC_NAME}Init();
+}
+
+class ${BLOC_NAME}Init extends ${BLOC_NAME}Event {
+  ${BLOC_NAME}Init() : super._();
+}

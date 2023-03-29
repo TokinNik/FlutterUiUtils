@@ -1,0 +1,22 @@
+import 'package:app/core/core.dart';
+import 'package:bloc/bloc.dart';
+
+part '${BLOC_EVENT_FILE_NAME}.dart';
+
+part '${BLOC_STATE_FILE_NAME}.dart';
+
+class ${BLOC_NAME}Bloc extends BaseBloc<${BLOC_NAME}Event, ${BLOC_NAME}State> {
+  ${BLOC_NAME}Bloc() : super(${BLOC_NAME}State()) {
+    on<${BLOC_NAME}Init>(init);
+  }
+
+  @override
+  void init(${BLOC_NAME}Event value, Emitter emit) {
+    // TODO: implement init
+  }
+
+  @override
+  void resetError(${BLOC_NAME}Event value, Emitter emit) {
+    emit(state.copyWith(errorString: ''));
+  }
+}

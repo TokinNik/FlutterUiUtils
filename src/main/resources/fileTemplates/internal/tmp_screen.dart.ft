@@ -1,0 +1,72 @@
+import 'package:app/presentation/${SCREEN_FILE_NAME}/bloc/${BLOC_FILE_NAME}.dart';
+import 'package:app/ui/ui.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
+
+${BLOC_NAME}Bloc _bloc(context) => BlocProvider.of<${BLOC_NAME}Bloc>(context);
+
+class ${SCREEN_NAME}ScreenPage extends StatelessWidget {
+  const ${SCREEN_NAME}ScreenPage({Key? key}) : super(key: key);
+
+  static MaterialPageRoute route() => MaterialPageRoute(
+        builder: (context) => const ${SCREEN_NAME}ScreenPage(),
+      );
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider<${BLOC_NAME}Bloc>(
+      create: (context) => GetIt.I.get<${BLOC_NAME}Bloc>(),
+      child: _${SCREEN_NAME}Screen(),
+    );
+  }
+}
+
+class _${SCREEN_NAME}Screen extends StatefulWidget {
+  const _${SCREEN_NAME}Screen({Key? key}) : super(key: key);
+
+  @override
+  State<_${SCREEN_NAME}Screen> createState() => _${BLOC_NAME}State();
+}
+
+class _${BLOC_NAME}State extends BaseState<_${SCREEN_NAME}Screen> {
+  @override
+  void initState() {
+    super.initState();
+    // todo
+  }
+
+  void _blocListener(BuildContext context, ${BLOC_NAME}State state) {
+    // todo
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<${BLOC_NAME}Bloc, ${BLOC_NAME}State>(
+      builder: _buildScreen,
+      listener: _blocListener,
+    );
+  }
+
+  Widget _buildScreen(BuildContext context, ${BLOC_NAME}State state) {
+    var topP = mData.viewPadding.top;
+    var bottomP = mDataOf(context).viewPadding.bottom;
+    return KeyboardDismissOnTap(
+      child: Scaffold(
+        backgroundColor: AppColors.white,
+        resizeToAvoidBottomInset: false,
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(0, topP, 0, bottomP),
+            child: Column(
+              children: [
+                // todo add children
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

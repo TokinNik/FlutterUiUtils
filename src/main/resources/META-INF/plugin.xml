@@ -7,26 +7,7 @@
     <vendor email="support@testcompany.com" url="https://www.testcompany.com">TestCompany</vendor>
 
     <description><![CDATA[
-    Test
-    Test
-    Test
-    Test
-    Test
-    Test
-    Test
-    Test
-    Test
-    Test
-    Test
-    Test
-    Test
-    Test
-    Test
-    Test
-    Test
-    Test
-    Test
-    Test
+    Plugin for generate base flutter screens for Aldera's internal projects
   ]]></description>
 
     <depends>com.intellij.modules.lang</depends>
