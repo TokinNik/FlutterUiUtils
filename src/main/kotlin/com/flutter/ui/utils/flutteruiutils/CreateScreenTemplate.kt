@@ -5,6 +5,8 @@ import com.intellij.ide.fileTemplates.FileTemplate
 import com.intellij.ide.fileTemplates.FileTemplateManager
 import com.intellij.ide.fileTemplates.FileTemplateUtil
 import com.intellij.openapi.actionSystem.*
+import com.intellij.openapi.command.WriteCommandAction
+import com.intellij.openapi.fileEditor.FileDocumentManager
 import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.roots.ProjectFileIndex
@@ -13,12 +15,15 @@ import com.intellij.openapi.vfs.VfsUtil
 import com.intellij.openapi.vfs.VfsUtilCore
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.PsiDirectory
+import com.intellij.psi.PsiManager
 import com.intellij.psi.impl.file.PsiDirectoryFactory
 import com.intellij.util.IncorrectOperationException
 import org.apache.velocity.runtime.parser.ParseException
 import java.awt.Dimension
 import java.util.*
 import javax.swing.*
+import kotlin.io.path.Path
+
 
 class CreateScreenTemplate : AnAction() {
     override fun actionPerformed(e: AnActionEvent) {
@@ -68,10 +73,14 @@ class MyDialog(val event: AnActionEvent) : DialogWrapper(true) {
 
         config = ScreenConfig(screenFileName, screenName, blocFileName, blocName, stateFileName, eventFileName)
 
+        println(relativePath)
+
         createScreenTemplate(projectPath, relativePath)
         createBlocTemplate(projectPath, relativePath)
         createStateTemplate(projectPath, relativePath)
         createEventTemplate(projectPath, relativePath)
+
+        registerBlocInDi(projectPath)
     }
 
     private fun createScreenTemplate(projectPath: VirtualFile, relativePath: String) {
@@ -131,6 +140,44 @@ class MyDialog(val event: AnActionEvent) : DialogWrapper(true) {
         strProp.setProperty("BLOC_FILE_NAME", config.blocFileName)
 
         createFileFromTemplate(template, config.eventFileName, strProp, blocFileDirectory)
+    }
+
+    private fun registerBlocInDi(projectPath: VirtualFile) {
+        val diFilePath = "${projectPath.toNioPath()}/lib/di/modules/presentation_module.dart"
+        println(diFilePath)
+        val path = Path(diFilePath)
+        println(path)
+        val virtualFile = VfsUtil.findFile(path, false)
+        val file = PsiManager.getInstance(project!!).findFile(virtualFile!!) ?: return
+
+        val document = FileDocumentManager.getInstance().getDocument(file.virtualFile)
+
+        val content: String = document?.text ?: ""
+
+        if (content.isEmpty()) return
+
+        try {
+            val indexOfRegisterBlocMethod = content.lastIndexOf("_registerBloc")
+
+            val lastBlocRegisterEnd = content.indexOf("}", indexOfRegisterBlocMethod)
+
+            val importStr =
+                "import 'package:app/presentation/${config.screenFileName}/bloc/${config.blocFileName}.dart';\n"
+            val blocRegisterStr =
+                "\n\n  container.registerLazySingleton<${config.blocName}Bloc>(\n    () => ${config.blocName}Bloc(),\n  );\n"
+
+            val newContent: String =
+                importStr + content.substring(0, lastBlocRegisterEnd - 1) + blocRegisterStr + content.substring(
+                    lastBlocRegisterEnd,
+                    content.lastIndex
+                )
+            val r = Runnable {
+                document?.setReadOnly(false)
+                document?.setText(newContent)
+            }
+            WriteCommandAction.runWriteCommandAction(project, r)
+        } catch (_: Exception) {
+        }
     }
 
     private fun createFileFromTemplate(
