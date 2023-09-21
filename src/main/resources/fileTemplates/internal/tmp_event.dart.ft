@@ -4,8 +4,14 @@ class ${BLOC_NAME}Event extends BlocEvent {
   ${BLOC_NAME}Event._();
 
   factory ${BLOC_NAME}Event.init() => ${BLOC_NAME}Init();
+
+  factory ${BLOC_NAME}Event.resetError() => ResetError();
 }
 
 class ${BLOC_NAME}Init extends ${BLOC_NAME}Event {
   ${BLOC_NAME}Init() : super._();
+}
+
+class ResetError extends ${BLOC_NAME}Event {
+  ResetError() : super._();
 }

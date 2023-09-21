@@ -8,6 +8,7 @@ part '${BLOC_STATE_FILE_NAME}.dart';
 class ${BLOC_NAME}Bloc extends BaseBloc<${BLOC_NAME}Event, ${BLOC_NAME}State> {
   ${BLOC_NAME}Bloc() : super(${BLOC_NAME}State()) {
     on<${BLOC_NAME}Init>(init);
+    on<ResetError>(resetError);
   }
 
   @override

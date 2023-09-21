@@ -66,14 +66,22 @@ class MyDialog(val event: AnActionEvent) : DialogWrapper(true) {
         var blocName = if (editBlocName.text.isNullOrBlank()) screenName else editBlocName.text
         blocName = blocName.replaceFirstChar { (blocName.first().uppercase()) }
 
-        val screenFileName = editName.text
+        var screenFileName = editName.text
+        if (screenFileName.isNullOrBlank()) {
+            screenFileName = screenName.camelToSnakeCase()
+        }
+
         val blocFileName = blocName.lowercase() + "_bloc"
         val stateFileName = blocName.lowercase() + "_state"
         val eventFileName = blocName.lowercase() + "_event"
 
         config = ScreenConfig(screenFileName, screenName, blocFileName, blocName, stateFileName, eventFileName)
 
-        println(relativePath)
+        println("blocFileName: $blocFileName")
+        println("stateFileName: $stateFileName")
+        println("eventFileName: $eventFileName")
+        println("projectPath: $projectPath")
+        println("relativePath: $relativePath")
 
         createScreenTemplate(projectPath, relativePath)
         createBlocTemplate(projectPath, relativePath)
@@ -159,7 +167,7 @@ class MyDialog(val event: AnActionEvent) : DialogWrapper(true) {
         try {
             val indexOfRegisterBlocMethod = content.lastIndexOf("_registerBloc")
 
-            val lastBlocRegisterEnd = content.indexOf("}", indexOfRegisterBlocMethod)
+            val indexOfRegisterBlocEndMethod = content.indexOf("}", indexOfRegisterBlocMethod)
 
             val importStr =
                 "import 'package:app/presentation/${config.screenFileName}/bloc/${config.blocFileName}.dart';\n"
@@ -167,8 +175,11 @@ class MyDialog(val event: AnActionEvent) : DialogWrapper(true) {
                 "\n\n  container.registerLazySingleton<${config.blocName}Bloc>(\n    () => ${config.blocName}Bloc(),\n  );\n"
 
             val newContent: String =
-                importStr + content.substring(0, lastBlocRegisterEnd - 1) + blocRegisterStr + content.substring(
-                    lastBlocRegisterEnd,
+                importStr + content.substring(
+                    0,
+                    indexOfRegisterBlocEndMethod - 1
+                ) + blocRegisterStr + content.substring(
+                    indexOfRegisterBlocEndMethod,
                     content.lastIndex
                 )
             val r = Runnable {

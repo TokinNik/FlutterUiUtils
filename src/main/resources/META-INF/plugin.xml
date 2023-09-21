@@ -17,7 +17,7 @@
     <extensions defaultExtensionNs="com.intellij">
         <applicationService serviceImplementation="com.flutter.ui.utils.flutteruiutils.MyApplicationService"/>
         <projectService serviceImplementation="com.flutter.ui.utils.flutteruiutils.MyProjectService"/>
-        <internalFileTemplate name="Dart Test File"/>
+
     </extensions>
 
 
@@ -26,6 +26,14 @@
                 class="com.flutter.ui.utils.flutteruiutils.CreateScreenTemplate" text="Create Flutter Screen"
                 description="Create Flutter Screen">
             <add-to-group group-id="ProjectViewPopupMenu" anchor="after" relative-to-action="WeighingNewGroup"/>
+<!--            <keyboard-shortcut first-keystroke="control M" keymap="$default" />-->
+        </action>
+
+        <action id="com.flutter.ui.utils.flutteruiutils.SearchFileNameEverywhere"
+                class="com.flutter.ui.utils.flutteruiutils.SearchFileNameEverywhere" text="Search File Name Everywhere"
+                description="Search File Name Everywhere">
+<!--            <add-to-group group-id="ProjectViewPopupMenu" anchor="after" relative-to-action="WeighingNewGroup"/>-->
+            <keyboard-shortcut first-keystroke="control M" keymap="$default" />
         </action>
     </actions>
 </idea-plugin>
