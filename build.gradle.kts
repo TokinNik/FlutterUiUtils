@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.flutter.ui.utils"
-version = "0.3.1"
+version = "0.3.2"
 
 repositories {
     mavenCentral()
@@ -44,4 +44,9 @@ tasks {
     publishPlugin {
         token.set(System.getenv("PUBLISH_TOKEN"))
     }
+}
+
+dependencies {
+    compileOnly("org.jetbrains.kotlin:kotlin-compiler-embeddable:1.7.20")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.20")
 }

@@ -12,6 +12,7 @@
 
     <depends>com.intellij.modules.lang</depends>
     <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.kotlin</depends>
     <depends>Dart</depends>
 
     <extensions defaultExtensionNs="com.intellij">
@@ -33,7 +34,36 @@
                 class="com.flutter.ui.utils.flutteruiutils.SearchFileNameEverywhere" text="Search File Name Everywhere"
                 description="Search File Name Everywhere">
 <!--            <add-to-group group-id="ProjectViewPopupMenu" anchor="after" relative-to-action="WeighingNewGroup"/>-->
-            <keyboard-shortcut first-keystroke="control M" keymap="$default" />
+<!--            <keyboard-shortcut first-keystroke="control M" keymap="$default" />-->
+            <keyboard-shortcut first-keystroke="control NUMPAD1" keymap="$default" />
         </action>
+
+        <group id="io.gitlab.arturbosch.detekt.idea.action.RunDetektMenuGroup"
+               text="Ui Utils"
+               popup="true"
+               class="com.flutter.ui.utils.flutteruiutils.RunDetektMenuGroup">
+<!--            maybe delete-->
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+<!--            maybe delete-->
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+<!--            maybe delete-->
+            <add-to-group group-id="ChangesViewPopupMenu" anchor="last"/>
+<!--            maybe delete-->
+            <add-to-group group-id="FindUsagesMenuGroup" anchor="last"/>
+<!--            maybe delete-->
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+            <add-to-group group-id="FindMenuGroup" anchor="last"/>
+            <add-to-group group-id="BasicEditorPopupMenu" anchor="last"/>
+            <add-to-group group-id="PopupMenuActions" anchor="last"/>
+
+            <action id="com.flutter.ui.utils.flutteruiutils.DeleteCodeBlockInFile"
+                    class="com.flutter.ui.utils.flutteruiutils.DeleteCodeBlockInFile"
+                    popup="true"
+                    text="Delete Code Block In File">
+
+                <keyboard-shortcut first-keystroke="control U" keymap="$default" />
+            </action>
+        </group>
+
     </actions>
 </idea-plugin>
