@@ -19,6 +19,19 @@
         <applicationService serviceImplementation="com.flutter.ui.utils.flutteruiutils.MyApplicationService"/>
         <projectService serviceImplementation="com.flutter.ui.utils.flutteruiutils.MyProjectService"/>
 
+<!--        <applicationConfigurable provider="com.flutter.ui.utils.flutteruiutils.chancheFolderIcons.MyFormConfigurableProvider"-->
+<!--                                 id="FolderIcons" parentId="appearance" displayName="Change icons"/>-->
+
+<!--        <fileIconProvider-->
+<!--            id="extraIconsFileIconProvider"-->
+<!--            order="first"-->
+<!--            implementation="com.flutter.ui.utils.flutteruiutils.chancheFolderIcons.ChangeFolderIconsProvider"/>-->
+
+        <iconProvider
+            id="extraIconsIconProvider"
+            order="first"
+            implementation="com.flutter.ui.utils.flutteruiutils.chancheFolderIcons.ChangeFolderIconsProvider"/>
+
     </extensions>
 
 
