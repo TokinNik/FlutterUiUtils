@@ -1,9 +1,11 @@
 package com.flutter.ui.utils.flutteruiutils
 
+import com.flutter.ui.utils.flutteruiutils.features.deleteCodeBlock.DeleteCodeBlockInFile
 import com.intellij.openapi.actionSystem.ActionPlaces
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.DefaultActionGroup
 import com.intellij.openapi.fileEditor.FileEditorManager
+
 class RunDetektMenuGroup : DefaultActionGroup(DeleteCodeBlockInFile()) {
 
     override fun update(e: AnActionEvent) {

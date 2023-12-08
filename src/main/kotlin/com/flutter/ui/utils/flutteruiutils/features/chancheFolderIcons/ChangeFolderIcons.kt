@@ -1,4 +1,4 @@
-package com.flutter.ui.utils.flutteruiutils.chancheFolderIcons
+package com.flutter.ui.utils.flutteruiutils.features.chancheFolderIcons
 
 import com.intellij.ide.IconProvider
 import com.intellij.openapi.util.IconLoader
@@ -26,7 +26,10 @@ class ChangeFolderIconsProvider : IconProvider() {
                 MyIcons.GearIcon.folder -> IconLoader.getIcon(MyIcons.GearIcon.path, javaClass)
                 MyIcons.FolderDataIcon.folder -> IconLoader.getIcon(MyIcons.FolderDataIcon.path, javaClass)
                 MyIcons.FolderDomainIcon.folder -> IconLoader.getIcon(MyIcons.FolderDomainIcon.path, javaClass)
-                MyIcons.FolderPresentationIcon.folder -> IconLoader.getIcon(MyIcons.FolderPresentationIcon.path, javaClass)
+                MyIcons.FolderPresentationIcon.folder -> IconLoader.getIcon(
+                    MyIcons.FolderPresentationIcon.path,
+                    javaClass
+                )
                 MyIcons.FolderUiIcon.folder -> IconLoader.getIcon(MyIcons.FolderUiIcon.path, javaClass)
                 MyIcons.FolderUtilsIcon.folder -> IconLoader.getIcon(MyIcons.FolderUtilsIcon.path, javaClass)
                 MyIcons.FolderDiIcon.folder -> IconLoader.getIcon(MyIcons.FolderDiIcon.path, javaClass)
@@ -36,6 +39,5 @@ class ChangeFolderIconsProvider : IconProvider() {
             null
         }
     }
-
 }
 

@@ -1,4 +1,4 @@
-package com.flutter.ui.utils.flutteruiutils
+package com.flutter.ui.utils.flutteruiutils.utils
 
 import com.intellij.psi.PsiElement
 
@@ -18,7 +18,7 @@ fun String.snakeToLowerCamelCase(): String {
 }
 
 fun PsiElement?.printAllChildRec(level: Int = 1) {
-    this?.let {element ->
+    this?.let { element ->
         element.children.forEach {
             (1..level).forEach { _ ->
                 print(" | ")
@@ -30,13 +30,13 @@ fun PsiElement?.printAllChildRec(level: Int = 1) {
 }
 
 fun PsiElement?.findInChildRec(query: (PsiElement) -> Boolean): PsiElement? {
-    this?.let {element ->
-        if(query(this)) return this
+    this?.let { element ->
+        if (query(this)) return this
         element.children.forEach {
 //            println("File child: $it  ${it.children.isEmpty()}")
             val check = it.findInChildRec(query)
-            if(check != null) return check
+            if (check != null) return check
         }
     }
-        return null
+    return null
 }

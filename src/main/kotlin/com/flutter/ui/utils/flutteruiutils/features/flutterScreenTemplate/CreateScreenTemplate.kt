@@ -1,5 +1,6 @@
 package com.flutter.ui.utils.flutteruiutils
 
+import com.flutter.ui.utils.flutteruiutils.utils.camelToSnakeCase
 import com.intellij.ide.IdeView
 import com.intellij.ide.fileTemplates.FileTemplate
 import com.intellij.ide.fileTemplates.FileTemplateManager
@@ -31,7 +32,7 @@ class CreateScreenTemplate : AnAction() {
     }
 }
 
-class MyDialog(val event: AnActionEvent) : DialogWrapper(true) {
+class MyDialog(event: AnActionEvent) : DialogWrapper(true) {
     init {
         title = "Create Flutter Screen"
         init()
@@ -250,7 +251,6 @@ class MyDialog(val event: AnActionEvent) : DialogWrapper(true) {
 
         return dialogPanel
     }
-
 }
 
 data class ScreenConfig(

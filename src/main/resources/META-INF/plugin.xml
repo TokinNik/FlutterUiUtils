@@ -19,18 +19,15 @@
         <applicationService serviceImplementation="com.flutter.ui.utils.flutteruiutils.MyApplicationService"/>
         <projectService serviceImplementation="com.flutter.ui.utils.flutteruiutils.MyProjectService"/>
 
-<!--        <applicationConfigurable provider="com.flutter.ui.utils.flutteruiutils.chancheFolderIcons.MyFormConfigurableProvider"-->
-<!--                                 id="FolderIcons" parentId="appearance" displayName="Change icons"/>-->
-
 <!--        <fileIconProvider-->
 <!--            id="extraIconsFileIconProvider"-->
 <!--            order="first"-->
-<!--            implementation="com.flutter.ui.utils.flutteruiutils.chancheFolderIcons.ChangeFolderIconsProvider"/>-->
+<!--            implementation="com.flutter.ui.utils.flutteruiutils.features.chancheFolderIcons.ChangeFolderIconsProvider"/>-->
 
         <iconProvider
             id="extraIconsIconProvider"
             order="first"
-            implementation="com.flutter.ui.utils.flutteruiutils.chancheFolderIcons.ChangeFolderIconsProvider"/>
+            implementation="com.flutter.ui.utils.flutteruiutils.features.chancheFolderIcons.ChangeFolderIconsProvider"/>
 
     </extensions>
 
@@ -43,8 +40,8 @@
 <!--            <keyboard-shortcut first-keystroke="control M" keymap="$default" />-->
         </action>
 
-        <action id="com.flutter.ui.utils.flutteruiutils.SearchFileNameEverywhere"
-                class="com.flutter.ui.utils.flutteruiutils.SearchFileNameEverywhere" text="Search File Name Everywhere"
+        <action id="com.flutter.ui.utils.flutteruiutils.features.searchFileName.SearchFileNameEverywhere"
+                class="com.flutter.ui.utils.flutteruiutils.features.searchFileName.SearchFileNameEverywhere" text="Search File Name Everywhere"
                 description="Search File Name Everywhere">
 <!--            <add-to-group group-id="ProjectViewPopupMenu" anchor="after" relative-to-action="WeighingNewGroup"/>-->
 <!--            <keyboard-shortcut first-keystroke="control M" keymap="$default" />-->
@@ -69,8 +66,8 @@
             <add-to-group group-id="BasicEditorPopupMenu" anchor="last"/>
             <add-to-group group-id="PopupMenuActions" anchor="last"/>
 
-            <action id="com.flutter.ui.utils.flutteruiutils.DeleteCodeBlockInFile"
-                    class="com.flutter.ui.utils.flutteruiutils.DeleteCodeBlockInFile"
+            <action id="com.flutter.ui.utils.flutteruiutils.features.deleteCodeBlock.DeleteCodeBlockInFile"
+                    class="com.flutter.ui.utils.flutteruiutils.features.deleteCodeBlock.DeleteCodeBlockInFile"
                     popup="true"
                     text="Delete Code Block In File">
 

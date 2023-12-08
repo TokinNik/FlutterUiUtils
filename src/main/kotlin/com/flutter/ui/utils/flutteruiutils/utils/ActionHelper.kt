@@ -1,4 +1,4 @@
-package com.flutter.ui.utils.flutteruiutils
+package com.flutter.ui.utils.flutteruiutils.utils
 
 import com.intellij.openapi.actionSystem.DataContext
 import com.intellij.openapi.actionSystem.LangDataKeys
@@ -7,7 +7,6 @@ import com.intellij.openapi.project.Project
 import com.intellij.psi.search.FileTypeIndex
 import com.jetbrains.lang.dart.DartFileType
 import com.jetbrains.lang.dart.sdk.DartSdk
-import org.jetbrains.annotations.Nullable
 
 class ActionHelper private constructor() {
 
@@ -21,7 +20,7 @@ class ActionHelper private constructor() {
         }
 
         private fun projectHasDartFiles(module: Module) =
-                FileTypeIndex.containsFileOfType(DartFileType.INSTANCE, module.moduleContentScope)
+            FileTypeIndex.containsFileOfType(DartFileType.INSTANCE, module.moduleContentScope)
 
         private fun hasDartSdk(project: Project): Boolean = DartSdk.getDartSdk(project) != null
 

@@ -1,7 +1,11 @@
-package com.flutter.ui.utils.flutteruiutils
+package com.flutter.ui.utils.flutteruiutils.features.deleteCodeBlock
 
+import com.flutter.ui.utils.flutteruiutils.utils.findInChildRec
+import com.flutter.ui.utils.flutteruiutils.utils.printAllChildRec
 import com.intellij.ide.projectView.ProjectView
-import com.intellij.openapi.actionSystem.*
+import com.intellij.openapi.actionSystem.AnAction
+import com.intellij.openapi.actionSystem.AnActionEvent
+import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.application.runWriteAction
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.openapi.editor.Document
@@ -14,16 +18,7 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.refactoring.suggested.endOffset
 import com.intellij.refactoring.suggested.startOffset
-import com.intellij.util.ui.TextTransferable
-import org.jetbrains.kotlin.com.intellij.psi.PsiMethodCallExpression
-import org.jetbrains.kotlin.com.intellij.psi.impl.source.PsiMethodImpl
 import org.jetbrains.kotlin.psi.KtCallExpression
-import org.jetbrains.kotlin.psi.psiUtil.endOffset
-import org.jetbrains.kotlin.psi2ir.endOffsetOrUndefined
-import java.awt.Robot
-import java.awt.Toolkit
-import java.awt.event.KeyEvent
-import java.util.*
 
 
 class DeleteCodeBlockInFile : AnAction() {
@@ -69,7 +64,6 @@ class DeleteCodeBlockInFile : AnAction() {
 
                         fun findBlock(deletedCodeBlock: String): PsiElement? =
                             (selectedElement as PsiFile).findInChildRec { e ->
-//                                println("check: $e - ${e.javaClass}  = ${e.javaClass == KtCallExpression::class.java} ?? ${e is KtCallExpression}")
                                 if (e is KtCallExpression) {
                                     val name = (e as KtCallExpression).text // maybe other method
                                     println("Found method: name = $name")
@@ -93,7 +87,7 @@ class DeleteCodeBlockInFile : AnAction() {
 
     private fun getFileNameWithoutExtension(name: String) = name.split(".").first()
 
-    fun printFilesNameWithoutExtension(directory: PsiDirectory?) {
+    private fun printFilesNameWithoutExtension(directory: PsiDirectory?) {
         directory?.files?.let { psiFiles ->
             psiFiles.map {
                 getFileNameWithoutExtension(it.name)

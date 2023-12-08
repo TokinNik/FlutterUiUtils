@@ -1,4 +1,4 @@
-package com.flutter.ui.utils.flutteruiutils
+package com.flutter.ui.utils.flutteruiutils.features.searchFileName
 
 import com.intellij.ide.projectView.ProjectView
 import com.intellij.openapi.actionSystem.*
@@ -15,7 +15,6 @@ import java.util.*
 class SearchFileNameEverywhere : AnAction() {
     override fun actionPerformed(e: AnActionEvent) {
         getAllFilesName(e)
-
     }
 
     private fun getAllFilesName(e: AnActionEvent) {
@@ -48,11 +47,11 @@ class SearchFileNameEverywhere : AnAction() {
                             val r = Robot()
                             with(r) {
                                 autoDelay = 100
-                                keyPress (KeyEvent.VK_CONTROL)
+                                keyPress(KeyEvent.VK_CONTROL)
                                 keyPress(KeyEvent.VK_V)
                                 keyRelease(KeyEvent.VK_CONTROL)
                                 keyRelease(KeyEvent.VK_V)
-                                keyPress (KeyEvent.VK_ALT)
+                                keyPress(KeyEvent.VK_ALT)
                                 keyPress(KeyEvent.VK_P)
                                 keyRelease(KeyEvent.VK_ALT)
                                 keyRelease(KeyEvent.VK_P)
@@ -66,14 +65,11 @@ class SearchFileNameEverywhere : AnAction() {
                 println("wtf")
             }
         }
-
-
     }
-
 
     private fun getFileNameWithoutExtension(name: String) = name.split(".").first()
 
-    fun printFilesNameWithoutExtension(directory: PsiDirectory?) {
+    private fun printFilesNameWithoutExtension(directory: PsiDirectory?) {
         directory?.files?.let { psiFiles ->
             psiFiles.map {
                 getFileNameWithoutExtension(it.name)
